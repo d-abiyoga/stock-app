@@ -111,7 +111,7 @@
             <!-- Replace with your content -->
             <div class="px-4 py-6 sm:px-0">
                 <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
-                    <fieldset class="border-2 m-3 p-3 space-y-1">
+                    <fieldset class="border-2 m-3 p-3 space-y-2">
                         <legend class="font-semibold">Stock Average Price Calculator</legend>
                         <fieldset>
                             <label for="ticker" class="inline-block w-60">Ticker:</label>
@@ -132,7 +132,7 @@
                                         </span>
                                     </div>
                                     <input type="number" id="oldSharePrice" name="oldSharePrice" min="0"  placeholder="0"
-                                        class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                        class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300 text-sm text-gray-800">
                                 </div>
                         </fieldset>
 
@@ -145,19 +145,19 @@
                                     </span>
                                 </div>
                                 <input type="number" id="oldSharePrice" name="oldSharePrice" min="0" placeholder="0"
-                                class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300 text-sm text-gray-800">
                             </div>
                         </fieldset>                            
                         <fieldset>
                             <label class="inline-block w-60">Buying price</label>
                             <div id="input-container" class="inline-block">
                                 <div class="relative">
-                                    <span class="absolute w-12 px-2 py-1 border-r-2 border-gray-200 text-gray-400 text-sm h-6">
+                                  <span class="absolute w-12 px-2 py-1 text-gray-400 text-sm h-6">
                                         Rp/lot
-                                    </span>
+                                  </span>
                                 </div>
                                 <input type="number" id="newBuyingPrice" name="newBuyingPrice" min="0" placeholder="0"
-                                class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300 text-sm text-gray-800">
                             </div>
                         </fieldset>
 
@@ -165,17 +165,17 @@
                             <label class="inline-block w-60">Buying quantity</label>
                             <div id="input-container" class="inline-block">
                                 <div class="relative">
-                                    <span class="absolute w-12 px-2 py-1 border-r-2 border-gray-200 text-gray-400 text-sm h-6">
+                                  <span class="absolute w-12 px-2 py-1 text-gray-400 text-sm h-6">
                                         Lot
                                     </span>
                                 </div>
                                 <input type="number" id="newBuyingPrice" name="newBuyingPrice" min="0" placeholder="0"
-                                class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300 mb-1">
+                                class="pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300 text-sm text-gray-800 mb-1">
                             </div>
                         </fieldset>
                       
 
-                        <button id="calcButton" class="shadow-md text-blue-50 p-1  w-36 rounded-lg bg-blue-500 hover:bg-blue-200 ">Calculate</button>  
+                        <button id="calcAvergeButton" onclick="calcAveragePrice()" class="shadow-md text-blue-50 p-1  w-36 rounded-lg bg-blue-500 hover:bg-blue-200">Calculate</button>  
                         
                         <fieldset>
                             <label for="newAverage" class="inline-block w-60">New average price</label>
@@ -192,6 +192,7 @@
           </div>
         </main>
       </div>
+      <script src="app.js"></script>
 </body>
 </html>
 
