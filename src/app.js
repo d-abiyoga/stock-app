@@ -1,3 +1,7 @@
+// import { readFileSync } from 'fs';
+// const { readFileSync} = require('fs');
+// import fs from 'fs';
+
 console.log("App.js has been loaded");
 
 // Input
@@ -34,9 +38,9 @@ function calcAveragePrice() {
     let currentPotGL = (buyingPrice - currentAveragePrice)/ currentAveragePrice * 100;
     let newPotGL = (buyingPrice - newAveragePrice ) / buyingPrice * 100 ;
 
-    console.log(additionalEquity);
+    // console.log(additionalEquity);
 
-    console.log(` below equation: ${ (buyingPrice * 100 * (currentShareQuantity + buyingQuantity)) * 100 }`);
+    // console.log(` below equation: ${ (buyingPrice * 100 * (currentShareQuantity + buyingQuantity)) * 100 }`);
 
 
     // Print the calculated price
@@ -60,7 +64,6 @@ function printPotGL(currentPotGL, newPotGL) {
     newPotGLHTML.innerHTML = `${newPotGL.toFixed(2)}%`;
 }
 
-
 // ===========  Under development  ===================
 /*
     Apply share price fraction based on idx regulation on https://www.idx.co.id/investor/mekanisme-perdagangan/
@@ -75,9 +78,9 @@ function printPotGL(currentPotGL, newPotGL) {
  */
 
     buyingPriceHTML.addEventListener("change" , (e) => {
-    console.log(e.target);
-    console.log(e.target.step);
-    console.log(e);
+    // console.log(e.target);
+    // console.log(e.target.step);
+    // console.log(e);
 
     // Set step (share price fraction) value based on input price 
     if (e.target.value < 200) {
@@ -121,23 +124,37 @@ function printPotGL(currentPotGL, newPotGL) {
 });
 
 // FEATURE: Retrieve ticker option from an array
-const STOCKS = [
-    {ticker: "ADMF", name: "Adira Dinamika Multi Finance Tbk PT" },
-    {ticker: "BBNI", name: "Bank Negara Indonesia (Persero) Tbk PT" },
-    {ticker: "SIDO", name: "Adaro Energy Tbk PT" },
-    {ticker: "PBID", name: "Panca Budi Idaman Tbk PT" },
-    {ticker: "SMDR", name: "Panca Budi Idaman Tbk PT" }
-];
+
 
 const tickerHTML = document.getElementById("ticker");
+const tickerInputHTML = document.getElementById("tickerInput");
 
 function generateTickerList(parentDiv, data) {
-        data.forEach ( stock => {
+    data.forEach ( stock => {
         let option = parentDiv.appendChild(document.createElement("option"))
-        option.value = stock.ticker;
-        option.appendChild(document.createTextNode(stock.ticker));
+        option.value = stock;
+        option.appendChild(document.createTextNode(stock));
     });
 }
 
-// Function call to generate ticker list
-generateTickerList(tickerHTML, STOCKS);
+//Set ticker input placeholder
+function setTickerInputPlaceholder() {
+    tickerInputHTML.placeholder = tickerList[0];
+}
+
+//  Load ticker list from JSON and then 
+let tickerList = [];
+
+const STOCK_JSON = fetch('./idx-stock.json')
+    .then( resp => resp.json())
+    .then( data => {
+        data.forEach( individualStock => {
+            tickerList.push(individualStock.KodeEmiten);
+        });
+        generateTickerList(tickerHTML, tickerList);
+        setTickerInputPlaceholder();
+        
+    })
+    .catch( err => {
+        console.log("fetching stock data error");
+    });
