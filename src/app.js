@@ -31,8 +31,8 @@ function calcAveragePrice() {
     let currentEquity = (currentAveragePrice * currentShareQuantity) * 100;
     let additionalEquity = (buyingPrice * buyingQuantity) * 100;
     let totalEquity = currentEquity + additionalEquity;
-    let currentPotGL = (currentEquity - (buyingPrice * currentShareQuantity * 100))/ (buyingPrice * 100 * currentShareQuantity) * 100;
-    let newPotGL = (newAveragePrice - buyingPrice) / buyingPrice * 100 ;
+    let currentPotGL = (buyingPrice - currentAveragePrice)/ currentAveragePrice * 100;
+    let newPotGL = (buyingPrice - newAveragePrice ) / buyingPrice * 100 ;
 
     console.log(additionalEquity);
 

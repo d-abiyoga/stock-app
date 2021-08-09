@@ -83,7 +83,7 @@
                 <button class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span class="sr-only">View notifications</span>
                   <!-- Heroicon name: outline/bell -->
-                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                   <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                   </svg>
                 </button>
@@ -118,12 +118,10 @@
                         <div id="1st-column" class="space-y-2">
                           <fieldset>
                               <label for="ticker" class="inline-block w-60">Ticker</label>
-                              <select name="ticker" id="ticker" class="bg-blue-100 drop-shadow-lg rounded-md border-gray-300 w-36 h-7 text-sm text-gray-800 pl-0.5">
-                                  <option value="PTBA">PTBA</option>
-                                  <option value="SIDO">SIDO</option>
-                                  <option value="PBID">PBID</option>
-                                  <option value="BBNI">BBNI</option>
-                              </select>
+                              <input list="ticker" name="ticker" id=" ticker" maxlength="4"  autofocus
+                              class="bg-blue-100 drop-shadow-lg rounded-md border-gray-300 w-36 h-7 text-sm text-gray-800 pl-2">
+                              <datalist id="ticker">
+                              </datalist>
                           </fieldset>
   
                           <fieldset>
@@ -186,7 +184,8 @@
                                 </div>
                           </fieldset>
                     
-                          <button id="calcAvergeButton" onclick="calcAveragePrice()" class="shadow-md text-blue-50 p-1  w-36 rounded-lg bg-blue-500 hover:bg-blue-200">Calculate</button>  
+                          <button id="calcAvergeButton" onclick="calcAveragePrice()" 
+                            class="shadow-md text-blue-50 p-1  w-36 rounded-lg bg-blue-500 hover:bg-blue-200 focus:ring-2" >Calculate</button>  
                           
                           <fieldset>
                               <label for="newAveragePrice" class="inline-block w-60">New average price</label>
@@ -238,7 +237,7 @@
           </div>
         </main>
       </div>
-      <script src="app.js"></script>
+      <script src="./app.js"></script>
 </body>
 </html>
 
