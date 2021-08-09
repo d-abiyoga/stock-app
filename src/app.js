@@ -43,17 +43,6 @@ function calcAveragePrice() {
     printAveragePrice(newAveragePrice.toFixed(2));
     printEquity(currentEquity, additionalEquity, totalEquity);
     printPotGL(currentPotGL, newPotGL);
-
-    /*
-    // Checking the values
-    console.log(`current average price: ${typeof currentAveragePrice}`);
-    console.log(`currentShareQuantity: ${typeof currentShareQuantity}`);
-    console.log(`buying price: ${typeof buyingPrice}`);
-    console.log(`buying quantity: ${typeof buyingQuantity}`);
-
-    console.log(`above:  ${((currentAveragePrice * currentShareQuantity) + (buyingPrice * buyingQuantity))}`);
-    console.log(`below: ${currentShareQuantity + buyingQuantity}`);
-    */  
 }
 
 function printAveragePrice(averagePrice) {
@@ -72,9 +61,7 @@ function printPotGL(currentPotGL, newPotGL) {
 }
 
 
-
-
-// Under development
+// ===========  Under development  ===================
 /*
     Apply share price fraction based on idx regulation on https://www.idx.co.id/investor/mekanisme-perdagangan/
     Kelompok Kerja (Rp)          |   Fraksi Harga           | Maksimum Perubahan
@@ -96,23 +83,21 @@ function printPotGL(currentPotGL, newPotGL) {
     if (e.target.value < 200) {
         return e.target.step = 1;
     } 
-    // break value at 200
-    else if (e.target.value == 200) {
-        if (e.key == "ArrowUp") // e.target.value = parseInt(e.target.value) + 1;
-        return e.target.step = 2;
-    }  
+    // CURRENTLY TINKERING: break value at 200
+    // else if (e.target.value == 200) {
+    //     return e.target.step = 2;
+    // }  
+
     else if (e.target.value < 500) {
         return e.target.step = 2;
     } 
-    //break value at 500
+    // CURRENTLY TINKERING: break value at 500
     else if (e.target.value == 500) {
-        if (e.key == "ArrowDown") return e.target.step = 2;
         return e.target.step = 5;
     }
 
-    //break value at 2000
+    // CURRENTLY TINKERING: break value at 2000
     else if (e.target.value == 2000) {
-        if (e.key == "ArrowDown") return e.target.step = 5;
         return e.target.step = 10;
     }
 
@@ -120,9 +105,8 @@ function printPotGL(currentPotGL, newPotGL) {
         return e.target.step = 5;
     } 
 
-    //break value at 5000
+    // CURRENTLY TINKERING: break value at 5000
     else if (e.target.value == 5000) {
-        if (e.key == "ArrowDown") return e.target.step = 5;
         return e.target.step = 10;
     }
     else if (e.target.value < 5000) {
@@ -136,53 +120,24 @@ function printPotGL(currentPotGL, newPotGL) {
     }
 });
 
-// By Using "keyup" as below, we can check the key pressed
+// FEATURE: Retrieve ticker option from an array
+const STOCKS = [
+    {ticker: "ADMF", name: "Adira Dinamika Multi Finance Tbk PT" },
+    {ticker: "BBNI", name: "Bank Negara Indonesia (Persero) Tbk PT" },
+    {ticker: "SIDO", name: "Adaro Energy Tbk PT" },
+    {ticker: "PBID", name: "Panca Budi Idaman Tbk PT" },
+    {ticker: "SMDR", name: "Panca Budi Idaman Tbk PT" }
+];
 
-// buyingPriceHTML.addEventListener("keyup", (e) => {
-//     console.log(e.target);
-//     console.log(e.target.step);
-//     console.log(e);
+const tickerHTML = document.getElementById("ticker");
 
-//     // Set step (share price fraction) value based on input price 
-//     if (e.target.value < 200) {
-//         return e.target.step = 1;
-//     } 
-//     // break value at 200
-//     else if (e.target.value == 200) {
-//         if (e.key == "ArrowUp") // e.target.value = parseInt(e.target.value) + 1;
-//         return e.target.step = 2;
-//     }  
-//     else if (e.target.value < 500) {
-//         return e.target.step = 2;
-//     } 
-//     //break value at 500
-//     else if (e.target.value == 500) {
-//         if (e.key == "ArrowDown") return e.target.step = 2;
-//         return e.target.step = 5;
-//     }
-    
-//     //break value at 2000
-//     else if (e.target.value == 2000) {
-//         if (e.key == "ArrowDown") return e.target.step = 5;
-//         return e.target.step = 10;
-//     }
-    
-//     else if (e.target.value < 2000) {
-//         return e.target.step = 5;
-//     } 
-    
-//     //break value at 5000
-//     else if (e.target.value == 5000) {
-//         if (e.key == "ArrowDown") return e.target.step = 5;
-//         return e.target.step = 10;
-//     }
-//     else if (e.target.value < 5000) {
-//         return e.target.step = 10;
-//     } 
-    
-//     else if (e.target.value > 5000 ) {
-//         return e.target.step = 25;
-//     } else {
-//         console.log("something error");
-//     }
-// });
+function generateTickerList(parentDiv, data) {
+        data.forEach ( stock => {
+        let option = parentDiv.appendChild(document.createElement("option"))
+        option.value = stock.ticker;
+        option.appendChild(document.createTextNode(stock.ticker));
+    });
+}
+
+// Function call to generate ticker list
+generateTickerList(tickerHTML, STOCKS);
