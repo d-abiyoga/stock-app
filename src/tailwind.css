@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+
+/* Custom CSS START here */
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+.input-box {
+    @apply pl-14 bg-blue-100  rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300 text-sm text-gray-800
+}
+
+#calcAvergeButton {
+    margin-left: 15.25rem;
+}
+/* Custom CSS END here */
+
+@tailwind utilities;
+
