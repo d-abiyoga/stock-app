@@ -4,14 +4,14 @@
 
 console.log("App.js has been loaded");
 
-// Input
+// ================================= Input =================================
 const currentAveragePriceHTML = document.getElementById("currentAveragePrice");
 const currentShareQuantityHTML = document.getElementById("currentShareQuantity"); 
 const buyingPriceHTML = document.getElementById("buyingPrice"); 
 const buyingQuantityHTML = document.getElementById("buyingQuantity"); 
 const targetPriceHTML = document.getElementById("targetPrice");
 
-// Output
+// ================================= Output =================================
 const newAveragePriceHTML = document.getElementById("newAveragePrice");
 const currentEquityHTML = document.getElementById("currentEquity");
 const additionalEquityHTML = document.getElementById("additionalEquity");
@@ -19,7 +19,7 @@ const totalEquityHTML = document.getElementById("totalEquity");
 const currentPotGLHTML = document.getElementById("currentPotGL");
 const newPotGLHTML = document.getElementById("newPotGL");
 
-// Function
+// ================================= Function =================================
 function calcAveragePrice() {
     // Retrieve the float value
     let currentAveragePrice = parseFloat(currentAveragePriceHTML.value);
@@ -158,3 +158,6 @@ const STOCK_JSON = fetch('./idx-stock.json')
     .catch( err => {
         console.log("fetching stock data error");
     });
+
+
+    // =================================  FEATURE: save current price / portofolio from local price
