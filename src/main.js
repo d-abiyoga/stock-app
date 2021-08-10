@@ -1,7 +1,3 @@
-// import { readFileSync } from 'fs';
-// const { readFileSync} = require('fs');
-// import fs from 'fs';
-
 console.log("App.js has been loaded");
 
 // ================================= Input =================================
@@ -80,7 +76,7 @@ function printPotGL(currentPotGL, newPotGL) {
     buyingPriceHTML.addEventListener("change" , (e) => {
     // console.log(e.target);
     // console.log(e.target.step);
-    // console.log(e);
+    console.log(e);
 
     // Set step (share price fraction) value based on input price 
     if (e.target.value < 200) {
@@ -145,7 +141,7 @@ function setTickerInputPlaceholder() {
 //  Load ticker list from JSON and then 
 let tickerList = [];
 
-const STOCK_JSON = fetch('./idx-stock.json')
+const STOCK_JSON = fetch('idx-stock.json')
     .then( resp => resp.json())
     .then( data => {
         data.forEach( individualStock => {
@@ -160,4 +156,29 @@ const STOCK_JSON = fetch('./idx-stock.json')
     });
 
 
-    // =================================  FEATURE: save current price / portofolio from local price
+// =================================  FEATURE: save current price / portofolio from local price
+    
+tickerInputHTML.addEventListener("keyup", (e) => {
+        if (e.target.value.length == "4") {
+            console.log("the ticker is 4 char length"); 
+            let selectedTicker = e.target.value.toUpperCase();
+            e.target.value = selectedTicker;
+            if (tickerList.includes(selectedTicker)) {
+                console.log(`${selectedTicker} is in array`); 
+                focusToElement(currentAveragePriceHTML);
+            }
+        } else { console.log("not 4 char length")}
+    });
+
+
+// it might be better if after the ticker input reach maxlength, then it focus to the next input 
+function focusToElement(HTMLElement) {
+    HTMLElement.focus();
+};
+
+// Feature: Portofolio
+// let portofolio = { 
+//     ticker: "AMDF",
+//     averagePrice: 7700,
+//     lot: 3
+// };
