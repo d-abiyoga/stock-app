@@ -111,13 +111,14 @@
           <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <!-- Replace with your content -->
             <div class="px-4 py-6 sm:px-0">
-                  <div id="stock-average-calc-card" class="border-2 shadow-md rounded-lg">
+              <!-- Start of card -->
+                  <div id="stock-average-calc-card" class="border-2 shadow-md rounded-lg mb-6">
                     <fieldset class="m-3 p-3">
                       <legend class="font-bold text-blue-700">Stock Average Price Calculator</legend>
                       <div id="flex-container" class="flex space-x-8">
                       <!-- start of 1st column -->
                         <div id="1st-column" class="space-y-2">
-                          <fieldset>
+                          <fieldset name="tickerInput-fieldset">
                               <label for="ticker" class="inline-block w-60">Ticker</label>
                               <input list="ticker" name="ticker" id="tickerInput" maxlength="4"  pattern="[A-Z]" oninvalid="setCustomValidity('invalid stock ticker format')" autofocus
                               class="bg-blue-100 drop-shadow-lg rounded-md border-gray-300 w-36 h-7 text-sm text-gray-800 pl-2">
@@ -125,7 +126,7 @@
                               </datalist>
                           </fieldset>
   
-                          <fieldset>
+                          <fieldset name="currentAveragePrice-fieldset">
                                   <label class="inline-block w-60">Current average price</label> 
                                   <div id="input-container" class="inline-block">
                                       <div class="relative">
@@ -137,7 +138,7 @@
                                   </div>
                           </fieldset>
   
-                          <fieldset>
+                          <fieldset name="currentShareQuantity-fieldset">
                               <label class="inline-block w-60">Current share quantity</label>
                               <div id="input-container" class="inline-block">
                                   <div class="relative">
@@ -148,7 +149,8 @@
                                   <input type="number" id="currentShareQuantity" name="currentShareQuantity" min="0" placeholder="0" class="input-box">
                                 </div>
                           </fieldset>                            
-                          <fieldset>
+
+                          <fieldset name="buyingPrice-fieldset">
                                 <label class="inline-block w-60">Buying price</label>
                                 <div id="input-container" class="inline-block">
                                     <div class="relative">
@@ -161,7 +163,7 @@
                                 </div>
                           </fieldset>
   
-                          <fieldset>
+                          <fieldset name="buyingQuantity-fieldset">
                               <label class="inline-block w-60">Buying quantity</label>
                               <div id="input-container" class="inline-block">
                                   <div class="relative">
@@ -173,7 +175,7 @@
                               </div>
                           </fieldset>
 
-                          <fieldset>
+                          <fieldset name="targetPrice-fieldset">
                               <label class="inline-block w-60">Target price</label>
                               <div id="input-container" class="inline-block">
                                   <div class="relative">
@@ -185,10 +187,10 @@
                                 </div>
                           </fieldset>
                     
-                          <button id="calcAvergeButton" onclick="calcAveragePrice()" 
-                            class="shadow-md text-blue-50 p-1  w-36 rounded-lg bg-blue-500 hover:bg-blue-200 focus:ring-2" >Calculate</button>  
+                          <button id="calcAverageButton" 
+                            class="calcAverageButton shadow-md text-blue-50 p-1  w-36 rounded-lg bg-blue-500 hover:bg-blue-200 focus:ring-2" >Calculate</button>  
                           
-                          <fieldset>
+                          <fieldset name="newAveragePrice-fieldset">
                               <label for="newAveragePrice" class="inline-block w-60">New average price</label>
                               <p id="newAveragePrice" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
                                       ...
@@ -198,31 +200,31 @@
                         <!-- end of 1st column -->
                         
                         <div id="2nd-column" class="border-2 bg-blue-200 rounded-md min-w-72 space-y-2 px-3 pt-0">
-                          <fieldset>
+                          <fieldset name="currentEquity-fieldset">
                             <label for="currentEquity" class="inline-block w-36 ">Current equity</label>
                             <p id="currentEquity" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
                                     ...
                             </p>
                           </fieldset>
-                          <fieldset>
+                          <fieldset name="additionalEquity-fieldset">
                             <label for="additionalEquity" class="inline-block w-36">Additional equity</label>
                             <p id="additionalEquity" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
                                     ...
                             </p>
                           </fieldset>
-                          <fieldset>
+                          <fieldset name="totalEquity-fieldset">
                             <label for="totalEquity" class="inline-block w-36">Total equity</label>
                             <p id="totalEquity" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
                                     ...
                             </p>
                           </fieldset>
-                          <fieldset>
+                          <fieldset name="currentPotGL-fieldset">
                             <label for="currentPotGL" class="inline-block w-36">Current Pot. G/L</label>
                             <p id="currentPotGL" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
                                     ...
                             </p>
                           </fieldset>
-                          <fieldset>
+                          <fieldset name="newPotGL-fieldset">
                             <label for="newPotGL" class="inline-block w-36">New Pot. G/L</label>
                             <p id="newPotGL" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
                                     ...
@@ -232,8 +234,134 @@
                       </div>
                     </fieldset>
                   </div>
+                  <!-- CARD END HERE -->
+
+              <!-- Start of card -->
+              <div id="stock-average-calc-card" class="border-2 shadow-md rounded-lg mb-6">
+                <fieldset class="m-3 p-3">
+                  <legend class="font-bold text-blue-700">Stock Average Price Calculator</legend>
+                  <div id="flex-container" class="flex space-x-8">
+                  <!-- start of 1st column -->
+                    <div id="1st-column" class="space-y-2">
+                      <fieldset name="tickerInput-fieldset">
+                          <label for="ticker" class="inline-block w-60">Ticker</label>
+                          <input list="ticker" name="ticker" id="tickerInput" maxlength="4"  pattern="[A-Z]" oninvalid="setCustomValidity('invalid stock ticker format')" autofocus
+                          class="bg-blue-100 drop-shadow-lg rounded-md border-gray-300 w-36 h-7 text-sm text-gray-800 pl-2">
+                          <datalist id="ticker" >
+                          </datalist>
+                      </fieldset>
+
+                      <fieldset name="currentAveragePrice-fieldset">
+                              <label class="inline-block w-60">Current average price</label> 
+                              <div id="input-container" class="inline-block">
+                                  <div class="relative">
+                                      <span class="absolute w-12 px-2 py-1  text-gray-400 text-sm h-6">
+                                          Rp/lot
+                                      </span>
+                                  </div>
+                                  <input type="number" id="currentAveragePrice" name="currentAveragePrice" min="50" step="2"  placeholder="50"  class="input-box">
+                              </div>
+                      </fieldset>
+
+                      <fieldset name="currentShareQuantity-fieldset">
+                          <label class="inline-block w-60">Current share quantity</label>
+                          <div id="input-container" class="inline-block">
+                              <div class="relative">
+                                  <span class="absolute w-12 px-2 py-1 text-gray-400 text-sm h-6">
+                                      Lot
+                                  </span>
+                              </div>
+                              <input type="number" id="currentShareQuantity" name="currentShareQuantity" min="0" placeholder="0" class="input-box">
+                            </div>
+                      </fieldset>                            
+
+                      <fieldset name="buyingPrice-fieldset">
+                            <label class="inline-block w-60">Buying price</label>
+                            <div id="input-container" class="inline-block">
+                                <div class="relative">
+                                    <span class="absolute w-12 px-2 py-1 text-gray-400 text-sm h-6">
+                                        Rp/lot
+                                    </span>
+                                </div>
+                                <input type="number" id="buyingPrice" name="buyingPrice" min="0" placeholder="0" step="1"
+                                class="input-box">
+                            </div>
+                      </fieldset>
+
+                      <fieldset name="buyingQuantity-fieldset">
+                          <label class="inline-block w-60">Buying quantity</label>
+                          <div id="input-container" class="inline-block">
+                              <div class="relative">
+                                <span class="absolute w-12 px-2 py-1 text-gray-400 text-sm h-6">
+                                      Lot
+                                  </span>
+                              </div>
+                              <input type="number" id="buyingQuantity" name="buyingQuantity" min="0" placeholder="0" class="input-box">
+                          </div>
+                      </fieldset>
+
+                      <fieldset name="targetPrice-fieldset">
+                          <label class="inline-block w-60">Target price</label>
+                          <div id="input-container" class="inline-block">
+                              <div class="relative">
+                                <span class="absolute w-12 px-2 py-1 text-gray-400 text-sm h-6">
+                                      Rp
+                                  </span>
+                              </div>
+                              <input type="number" id="targetPrice" name="targetPrice" min="0" placeholder="0" class="input-box">
+                            </div>
+                      </fieldset>
+                
+                      <button id="calcAverageButton" 
+                        class="calcAverageButton shadow-md text-blue-50 p-1  w-36 rounded-lg bg-blue-500 hover:bg-blue-200 focus:ring-2" >Calculate</button>  
+                      
+                      <fieldset name="newAveragePrice-fieldset">
+                          <label for="newAveragePrice" class="inline-block w-60">New average price</label>
+                          <p id="newAveragePrice" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-36 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                  ...
+                          </p>
+                      </fieldset>
+                    </div>
+                    <!-- end of 1st column -->
+                    
+                    <div id="2nd-column" class="border-2 bg-blue-200 rounded-md min-w-72 space-y-2 px-3 pt-0">
+                      <fieldset name="currentEquity-fieldset">
+                        <label for="currentEquity" class="inline-block w-36 ">Current equity</label>
+                        <p id="currentEquity" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                ...
+                        </p>
+                      </fieldset>
+                      <fieldset name="additionalEquity-fieldset">
+                        <label for="additionalEquity" class="inline-block w-36">Additional equity</label>
+                        <p id="additionalEquity" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                ...
+                        </p>
+                      </fieldset>
+                      <fieldset name="totalEquity-fieldset">
+                        <label for="totalEquity" class="inline-block w-36">Total equity</label>
+                        <p id="totalEquity" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                ...
+                        </p>
+                      </fieldset>
+                      <fieldset name="currentPotGL-fieldset">
+                        <label for="currentPotGL" class="inline-block w-36">Current Pot. G/L</label>
+                        <p id="currentPotGL" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                ...
+                        </p>
+                      </fieldset>
+                      <fieldset name="newPotGL-fieldset">
+                        <label for="newPotGL" class="inline-block w-36">New Pot. G/L</label>
+                        <p id="newPotGL" class="text-center mt-2 pt-1 font-semibold text-yellow-800 inline-block bg-yellow-100 rounded-md border-gray-300 w-48 h-7 focus:ring-2 focus:ring-blue-300 focus:border-blue-300">
+                                ...
+                        </p>
+                      </fieldset>
+                    </div>
+                  </div>
+                </fieldset>
               </div>
               <!-- CARD END HERE -->
+
+              </div>
             <!-- /End replace -->
           </div>
         </main>
