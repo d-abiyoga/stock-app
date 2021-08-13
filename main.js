@@ -1,20 +1,5 @@
 console.log("App.js has been loaded");
 
-// ================================= Input =================================
-// const currentAveragePriceHTML = document.getElementById("currentAveragePrice");
-// const currentShareQuantityHTML = document.getElementById("currentShareQuantity"); 
-const buyingPriceHTML = document.getElementById("buyingPrice"); 
-// const buyingQuantityHTML = document.getElementById("buyingQuantity"); 
-// const targetPriceHTML = document.getElementById("targetPrice");
-
-// ================================= Output =================================
-// const newAveragePriceHTML = document.getElementById("newAveragePrice");
-// const currentEquityHTML = document.getElementById("currentEquity");
-// const additionalEquityHTML = document.getElementById("additionalEquity");
-// const totalEquityHTML = document.getElementById("totalEquity");
-// const currentPotGLHTML = document.getElementById("currentPotGL");
-// const newPotGLHTML = document.getElementById("newPotGL");
-
 // ================================= Function =================================
 window.addEventListener("click", (e) => {
     // console.log(e.target);
@@ -23,21 +8,20 @@ window.addEventListener("click", (e) => {
         console.log(input);
 
         let output = calculateAveragePrice(input);
-        console.log("Output:")
-        console.log(output)
+        // console.log("Output:")
+        // console.log(output)
         // getOutputHTML();
 
         // Print the calculated price
          printAveragePrice(e.target, output.newAveragePrice.toFixed(2));
          printEquity(e.target, output.currentEquity, output.additionalEquity, output.totalEquity);
          printPotGL(e.target, output.currentPotGL, output.newPotGL);
-
     }
+
 });
 
 function getInputValues(clickedButton) {
     let parentDiv = clickedButton.parentElement;
-
     let elementList = ["currentAveragePrice", "currentShareQuantity", "buyingPrice", "buyingQuantity"] 
     let elementValue = {};
     elementList.forEach( value => {
@@ -105,6 +89,15 @@ function printPotGL(clickedButton, currentPotGL, newPotGL) {
 
  */
 
+class BuyingPrice {
+    constructor() {
+        this.html = document.getElementById("buyingPrice")
+    }
+}
+
+let buyingPriceObj = new BuyingPrice;
+
+const buyingPriceHTML = document.getElementById("buyingPrice"); 
 buyingPriceHTML.addEventListener("change" , (e) => {
     // Set step (share price fraction) value based on input price 
     if (e.target.value < 200) {
@@ -175,7 +168,6 @@ const STOCK_JSON = fetch('idx-stock.json')
         });
         generateTickerList(tickerHTML, tickerList);
         setPlaceHolder(tickerInputHTML, tickerList[0]);
-        
     })
     .catch( err => {
         console.log("fetching stock data error");
@@ -197,11 +189,4 @@ tickerInputHTML.addEventListener("change", (e) => {
 // it might be better if after the ticker input reach maxlength, then it focus to the next input . Not applied yet
 function focusToElement(HTMLElement) {
     HTMLElement.focus();
-};
-
-// Feature: Portofolio
-let portofolio = { 
-    ticker: "AMDF",
-    averagePrice: 7700,
-    lot: 3
 };

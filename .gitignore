@@ -2,3 +2,4 @@ node_modules
 src/.prettierrc
 .gitignore
 src/img
+src/crawler.js
