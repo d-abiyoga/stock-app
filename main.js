@@ -1,3 +1,5 @@
+import './tailwind.css'
+
 console.log("App.js has been loaded");
 
 // ================================= Function =================================
@@ -43,8 +45,8 @@ function calculateAveragePrice(input) {
     let currentEquity = (input.currentAveragePrice * input.currentShareQuantity) * 100;
     let additionalEquity = (input.buyingPrice * input.buyingQuantity) * 100;
     let totalEquity = currentEquity + additionalEquity;
-    let currentPotGL = (input.buyingPrice - input.currentAveragePrice)/ input.currentAveragePrice * 100;
-    let newPotGL = (input.buyingPrice - newAveragePrice ) / input.buyingPrice * 100 ;
+    let currentPotGL = (input.currentAveragePrice - input.buyingPrice)/ input.buyingPrice * 100;
+    let newPotGL = (newAveragePrice - input.buyingPrice ) / input.buyingPrice * 100 ;
 
     return {newAveragePrice, currentEquity, additionalEquity, totalEquity, currentPotGL, newPotGL}
 };
