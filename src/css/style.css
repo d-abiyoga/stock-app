@@ -1,0 +1,49 @@
+@import "./calculator.css";
+@import "./nav.css";
+
+@tailwind base;
+@tailwind components;
+
+/* CSS to remove firefox outline in button during focus */
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+/* START CSS */
+#app {
+font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  padding: 1rem 1rem 1rem 2rem;
+  margin-left: 10rem;
+  width: calc(100vw - 10rem);
+}
+
+/* App */
+h1 {
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+  @apply text-3xl;
+  @apply text-green-600;
+  @apply font-bold;
+}
+
+.link-to-page {
+  @apply text-green-600;
+  text-decoration: underline;
+}
+
+/* For Tablet Screen */
+@media screen and (max-width: 1000px) {
+  #app {
+    margin-left: 4.25rem;
+  }
+}
+
+/* Utils */
+.hidden {
+  display: none;
+}
+ /* END OF PURE CSS */
+
+@tailwind utilities;

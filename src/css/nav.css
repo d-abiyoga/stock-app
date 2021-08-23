@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
+
+nav {
+    height: 100vh;
+    width: 10rem;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  
+    padding-top: 2rem;
+  
+    transition: 0.5s;
+  }
+
+  .logo {
+      padding-left: 1rem;
+      padding-bottom: 1.5rem;
+      color: white;
+      font-family: 'Leckerli One', cursive;
+      text-decoration: underline;
+
+      font-size: 1.4rem;
+  }
+  
+  .menu-btn {
+    position: relative;
+    /* display: flex; */
+    width: 32px;
+    height: 32px;
+    /* border: #2c3e50 1px solid; */
+  
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    margin-bottom: 25px;
+  
+    cursor: pointer;
+
+    display: none;
+  }
+  
+  #hamburger-menu {
+    display: block;
+    background-color: white;
+  
+    width: 32px;
+    height: 4px;
+    border-radius: 3px;
+  }
+  
+  #hamburger-menu::before, 
+  #hamburger-menu::after {
+    content: ' ';
+    position: absolute;
+    background-color: white;
+  
+    width: 32px;
+    height: 4px;
+    border-radius: 3px;
+  }
+  
+  #hamburger-menu::before {
+    transform: translateY(-12px);
+  }
+  #hamburger-menu::after {
+    transform: translateY(12px);
+  }
+  
+  .nav-open {
+    width: 100vw;
+  }
+  
+  nav a {
+    display: flex;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  
+    padding-left: 1rem;
+    align-items: flex-end;
+  }
+  
+  nav a:hover {
+    @apply bg-green-600;
+  }
+  
+  .icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    mask-size: cover;
+    @apply bg-gray-100;
+  }
+  
+  .icon-home {
+    mask: url(../img/home_white_36dp.svg);
+  }
+  .icon-calculators {
+    mask: url(../img/calculate_white_36dp.svg);
+  }
+  .icon-portofolio {
+    mask: url(../img/pie_chart_white_36dp.svg);
+  }
+  
+  nav a * {
+    display: inline;
+    @apply text-gray-100;
+  }
+  
+  .nav__link-title {
+    margin-left: 0.25rem;
+  }
+
+
+  /* For Tablet Screen */
+  @media screen and (max-width: 1000px) {
+    nav {
+        width: 4.25rem;
+    }
+
+    .nav__link-title {
+        display: none;
+      }
+
+    .logo {
+        display: none;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+}

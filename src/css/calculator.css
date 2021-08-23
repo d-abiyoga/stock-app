@@ -1,0 +1,129 @@
+*:focus {
+    outline: none;
+}
+
+#stock-average-calc-card {
+    @apply rounded-lg;
+    @apply mb-10;
+    max-width: 90%;
+}
+
+#stock-average-calc-card::after {
+    content: ' ';
+    position: absolute;
+    @apply bg-green-500;
+  
+    width: 46.75rem;
+    height: 2px;
+    border-radius: 1px;
+    transform: translate(2rem, 0.75rem);
+}
+
+#stock-average-calc-card fieldset{
+    /* @apply m-3; */
+    /* @apply p-3; */
+}
+  
+#stock-average-calc-card fieldset legend{
+    @apply font-bold;
+    @apply text-green-700;
+    padding-bottom: 0.25rem;
+}
+
+/* Flex container only used to make 2 columns */
+#stock-average-calc-card fieldset #flex-container{
+    @apply flex;
+    gap: 1rem;
+}
+
+.card__column {
+    @apply border-2;
+    @apply rounded-lg;
+    @apply space-y-2;
+    width: 24rem;
+    padding: 0.5rem 1rem 1.5rem;
+}
+
+.input-label{
+    @apply  inline-block w-40 mr-3 text-right;
+}
+
+#input-container {
+    @apply inline-block;
+}
+
+.input-box {
+    @apply pl-2;
+    @apply w-40;
+    @apply h-7;
+    @apply text-sm; 
+    @apply  rounded-xl;
+    @apply bg-green-100;
+    @apply border-gray-300;
+    @apply focus:ring-2;
+    @apply focus:ring-green-300;
+    @apply focus:border-green-300;
+    @apply text-gray-800;
+}
+
+/* Second Column Items */
+.output-label {
+    @apply inline-block w-40 mr-3 text-right;
+}
+
+.output-box {
+    @apply inline-block;
+    @apply pl-2;
+    @apply w-40;
+    @apply h-7;
+    @apply text-sm; 
+    @apply rounded-xl;
+    @apply border-gray-300;
+    @apply bg-gray-100;
+    @apply text-green-800;
+}
+
+.input-container div  {
+    position: relative;
+    display: none;
+}
+
+.input-details {
+    @apply absolute w-12 px-2 py-1 text-gray-400 text-sm h-6;
+    display: none;
+} 
+
+.card__column .calcAverageButton {
+    @apply shadow-md text-green-50 p-1  w-40 rounded-xl bg-green-500 hover:bg-green-300 focus:ring-2 focus:ring-green-600;
+    display: block;
+    margin-left: 11rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.calcAverageButton:active {
+    @apply bg-green-600;
+}
+
+
+.addCompButton {
+    @apply rounded-full;
+    @apply text-lg;
+    @apply shadow-md;
+    height: 36px;
+    width: 36px;
+    background-color: rgb(16, 185, 129);
+    color: white;
+  }
+
+  
+  /* For Tablet Screen */
+  @media screen and (max-width: 1000px) {
+    #stock-average-calc-card::after {
+        width: 20.75rem;
+    }
+
+    #stock-average-calc-card fieldset #flex-container{
+        flex-wrap: wrap;
+    }
+}
