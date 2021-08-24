@@ -40,6 +40,13 @@ h1 {
   }
 }
 
+/* For Phone Screen */
+@media screen and (max-width: 500px) {
+  #app {
+    margin-left: 2rem;
+  }
+}
+
 /* Utils */
 .hidden {
   display: none;

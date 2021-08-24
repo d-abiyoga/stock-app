@@ -9,9 +9,8 @@ export default class AddComponentButton {
 
         // workaround for getting the button element
         setTimeout( () => {
-            this.button = document.getElementById("addCompButton")
-            console.log(this);
-            this.button.addEventListener("click", (e) => this.addNewCalculator(e))
+            this.button = document.getElementById("addCompButton");
+            this.button.addEventListener("click", (e) => this.addNewCalculator(e));
         });
     }
 
@@ -32,35 +31,5 @@ export default class AddComponentButton {
         getNewCalc();
     }
 
-    // getEvent() {
-    //     this.addEventListener("click", (e) => {
-    //         console.log("clicked the add comp button")
-    //     });
-    // };
-
-    // addNewCalculator() {
-    //     const newCalculator = document.createElement("div")'
-    //     '
-    // }
-
 
 }
-
-    // getHtml() {
-
-    // IMPLEMENTED
-    //     let appDiv = document.querySelector("#app");
-    //     console.log(appDiv);
-    //     appDiv.appendChild(addCompButton);
-
-    // NOT YET IMPLEMENTED
-    //     addCompButton.addEventListener("click", (e) => {
-    //         const newCalculator = document.createElement("div");
-    //         e.target.parentNode.insertBefore(newCalculator, e.target);
-
-    //         const addNewCalc = this.getAvgCalc();
-    //         addNewCalc.then((resolve) => {
-    //             newCalculator.innerHTML = resolve;
-    //         });
-    //     });
-    // }

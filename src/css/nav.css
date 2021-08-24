@@ -130,3 +130,45 @@ nav {
         display: flex;
     }
 }
+
+
+  /* For Phone Screen */
+  @media screen and (max-width: 500px) {
+    nav {
+        width: 3rem;
+    }
+
+    nav a {
+      padding-left: 0.5rem;
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .menu-btn {
+      width: 32px;
+      height: 32px;
+    
+      margin-left: 0.5rem;
+    }
+    
+    #hamburger-menu {
+      width: 30px;
+      height: 4px;
+      border-radius: 3px;
+    }
+    
+    #hamburger-menu::before, 
+    #hamburger-menu::after {
+      width: 30px;
+    }
+    
+    #hamburger-menu::before {
+      transform: translateY(-10px);
+    }
+    #hamburger-menu::after {
+      transform: translateY(10px);
+    }
+}

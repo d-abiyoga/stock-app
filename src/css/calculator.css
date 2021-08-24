@@ -93,7 +93,7 @@
     display: none;
 } 
 
-.card__column .calcAverageButton {
+.calcAverageButton {
     @apply shadow-md text-green-50 p-1  w-40 rounded-xl bg-green-500 hover:bg-green-300 focus:ring-2 focus:ring-green-600;
     display: block;
     margin-left: 11rem;
@@ -126,4 +126,35 @@
     #stock-average-calc-card fieldset #flex-container{
         flex-wrap: wrap;
     }
+}
+
+  /* For Phone Screen */
+  @media screen and (max-width: 1000px) {
+    #stock-average-calc-card::after {
+        width: 20.75rem;
+    }
+
+    .card__column {
+        min-width: 15rem;
+        max-width: 75vw;
+        padding: 1.25rem 1rem 1.5rem;
+    }
+
+    .input-label, .output-label {
+        display: block;
+        text-align: left;
+    }
+
+    .input-box, .output-box {
+        width: 14rem;
+    }
+
+
+    .calcAverageButton {
+        --box-width: 14rem;
+        --y-spacing: 4rem;
+        margin-left: 0;
+        width: calc(var(--box-width) - (var(--y-spacing) * 2));
+    }
+
 }

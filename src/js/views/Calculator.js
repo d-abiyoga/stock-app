@@ -13,11 +13,6 @@ export default class extends AbstractView {
     async getHtml() {
       // creating instance of add component button
       let addCompButton = new AddComponentButton();
-      // console.log(addCompButton);
-
-      let button = await addCompButton.getHtml();
-      // console.log(button)
-
       
       // return the html which construct the calculator page
       return `
@@ -138,26 +133,4 @@ export default class extends AbstractView {
         <!-- CARD END HERE -->
         `;
     }
-
-    // getAddCompButton() {
-    //     const addCompButton = document.createElement("button");
-    //     addCompButton.innerHTML = "+";
-    //     addCompButton.classList.add("addCompButton");
-
-    //     console.log(addCompButton);
-
-    //     let appDiv = document.querySelector("#app");
-    //     console.log(appDiv);
-    //     appDiv.appendChild(addCompButton);
-
-    //     addCompButton.addEventListener("click", (e) => {
-    //         const newCalculator = document.createElement("div");
-    //         e.target.parentNode.insertBefore(newCalculator, e.target);
-
-    //         const addNewCalc = this.getAvgCalc();
-    //         addNewCalc.then((resolve) => {
-    //             newCalculator.innerHTML = resolve;
-    //         });
-    //     });
-    // }
 }
