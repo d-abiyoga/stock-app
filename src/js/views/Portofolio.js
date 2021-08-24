@@ -7,7 +7,7 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        this.getPortofolio();
+        // this.getPortofolio();
         return `
         <h1>IdStockTools - Portofolio</h1>
         <p> 
@@ -21,19 +21,19 @@ export default class extends AbstractView {
         `
     }
 
-    getPortofolio() {
-        let portofolio;
-        if (window.localStorage.getItem("portofolio") === null) {
-            console.log(`portofolio is null`)
-            portofolio = [{stock: "PTBA"}];
-            // console.log(`portofolio created ===>`)
-            // console.log(portofolio)
-        } else {
-            portofolio = JSON.parse(window.localStorage.getItem("portofolio"));
-            // console.log(`portofolio is loaded ===>
-            // ${portofolio}`)
-        }
-    }
+    // getPortofolio() {
+    //     let portofolio;
+    //     if (window.localStorage.getItem("portofolio") === null) {
+    //         // console.log(`portofolio is null`)
+    //         portofolio = [{stock: "PTBA"}];
+    //         // console.log(`portofolio created ===>`)
+    //         // console.log(portofolio)
+    //     } else {
+    //         portofolio = JSON.parse(window.localStorage.getItem("portofolio"));
+    //         // console.log(`portofolio is loaded ===>
+    //         // ${portofolio}`)
+    //     }
+    // }
 }
 
 // https://github.com/developedbyed/vanilla-todo/blob/master/app.js

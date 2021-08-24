@@ -6,7 +6,7 @@ export default class CalculatorsView extends AbstractView {
         super();
         this.setTitle("IdStockTools - Calculator");
 
-        // Is there any way to accomplish this?
+        // Is there any other way to accomplish this?
         this.AveragePrice = new AveragePriceCalculator();
     }
 
@@ -14,6 +14,7 @@ export default class CalculatorsView extends AbstractView {
         // creating instance of add component button
         let addCompButton = new AddComponentButton();
 
+        this.AveragePrice.listenEvent();
         // return the html which construct the calculator page
         return `
         ${await this.getHeading()}
@@ -64,7 +65,7 @@ export default class CalculatorsView extends AbstractView {
                         <input type="number" id="currentShareQuantity" name="currentShareQuantity" min="0" placeholder="0" class="input-box">
                       </div>
 
-                    <label class="input-label" for="buying-price">Buying price</label>
+                    <label class="input-label" for="buying-price">Additional buy price</label>
                     <div class="input-container">
                         <div class="relative">
                             <span class="input-details">
@@ -144,24 +145,17 @@ export default class CalculatorsView extends AbstractView {
 // I think it is better to separate the calculator itself and the average price calc
 export class AveragePriceCalculator {
     constructor() {
-        this.listenEvent();
+
     }
 
     listenEvent() {
-        console.log("listening the event");
+        // console.log("listening the event");
         document.addEventListener("click", (e) => {
             if (e.target.classList.contains("calcAverageButton")) {
                 let input = this.getInputValues(e.target);
-                console.log("=========  input ===============");
-                console.log(input);
-
                 if (Object.values(input).includes(NaN))
                     return alert("Please fill all required inputs");
-
                 let output = this.calcOutput(input);
-                console.log("=========  output ===============");
-                console.log(output);
-
                 this.printOutput(e.target, output);
             }
         });
