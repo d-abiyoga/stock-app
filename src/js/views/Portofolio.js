@@ -26,12 +26,12 @@ export default class extends AbstractView {
         if (window.localStorage.getItem("portofolio") === null) {
             console.log(`portofolio is null`)
             portofolio = [{stock: "PTBA"}];
-            console.log(`portofolio created ===>`)
-            console.log(portofolio)
+            // console.log(`portofolio created ===>`)
+            // console.log(portofolio)
         } else {
             portofolio = JSON.parse(window.localStorage.getItem("portofolio"));
-            console.log(`portofolio is loaded ===>
-            ${portofolio}`)
+            // console.log(`portofolio is loaded ===>
+            // ${portofolio}`)
         }
     }
 }

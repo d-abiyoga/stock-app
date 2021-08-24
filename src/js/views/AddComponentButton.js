@@ -1,4 +1,4 @@
-import Calculator from "./Calculator";
+import CalculatorsView from "./Calculator";
 import {} from "../index.js"
 
 export default class AddComponentButton {
@@ -22,7 +22,7 @@ export default class AddComponentButton {
 
     addNewCalculator(event) {
         const clickedButton = event.target;
-        const newCalculatorObj = new Calculator;
+        const newCalculatorObj = new CalculatorsView;
 
         // change the innerHTML of newCalculator
         const getNewCalc = async () => {

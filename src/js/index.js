@@ -34,8 +34,6 @@ const router = async () => {
 
     const view = new match.route.view();
     document.querySelector("#app").innerHTML = await view.getHtml();
-
-    console.log(view);
 };
 
 // to check if "back/forward button" triggered and call the router function

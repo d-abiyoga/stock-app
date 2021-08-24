@@ -1,25 +1,25 @@
 import AbstractView from "./AbstractView.js";
 import AddComponentButton from "./AddComponentButton.js";
 
-export default class extends AbstractView {
+export default class CalculatorsView extends AbstractView {
     constructor() {
         super();
         this.setTitle("IdStockTools - Calculator");
 
-        console.log("inside constructor");
-
+        // Is there any way to accomplish this?
+        this.AveragePrice = new AveragePriceCalculator();
     }
 
     async getHtml() {
-      // creating instance of add component button
-      let addCompButton = new AddComponentButton();
-      
-      // return the html which construct the calculator page
-      return `
+        // creating instance of add component button
+        let addCompButton = new AddComponentButton();
+
+        // return the html which construct the calculator page
+        return `
         ${await this.getHeading()}
         ${await this.getAvgCalc()}
         ${await addCompButton.getHtml()}
-        `
+        `;
     }
 
     async getHeading() {
@@ -38,12 +38,14 @@ export default class extends AbstractView {
             <!-- start of 1st column -->
               <div id="first-column" class=" card__column">
                   <label class="input-label" for="ticker">Ticker</label>
+                  <div class="input-container">
                   <input list="ticker" name="ticker" id="tickerInput" class="input-box" maxlength="4"  pattern="[A-Z]" autofocus>
                   <datalist id="ticker" >
                   </datalist>
+                  </div>
 
                   <label class="input-label" for="current-average-price">Current average price</label> 
-                  <div id="input-container">
+                  <div class="input-container">
                     <div class="relative">
                       <span class="input-details">
                           Rp/lot
@@ -53,7 +55,7 @@ export default class extends AbstractView {
                   </div>
 
                   <label class="input-label" for="current-share-quantity">Current share quantity</label>
-                    <div id="input-container">
+                    <div class="input-container">
                         <div class="relative">
                             <span class="input-details">
                                 Lot
@@ -63,28 +65,28 @@ export default class extends AbstractView {
                       </div>
 
                     <label class="input-label" for="buying-price">Buying price</label>
-                    <div id="input-container">
+                    <div class="input-container">
                         <div class="relative">
                             <span class="input-details">
                                 Rp/lot
                             </span>
                         </div>
-                        <input type="number" id="buyingPrice" name="buyingPrice" min="0" placeholder="0" step="1"
+                        <input type="number" id="buyingPrice" name="buyingPrice" min="50" placeholder="0" step="1"
                         class="input-box">
                     </div>
 
                     <label class="input-label" for="buying-quantity">Buying quantity</label>
-                    <div id="input-container">
-                        <input type="number" id="buyingQuantity" name="buyingQuantity" min="0" placeholder="0" class="input-box">
-                        <div class="relative">
+                    <div class="input-container">
+                      <div class="relative">
                         <span class="input-details">
-                              Lot
-                          </span>
+                            Lot
+                        </span>
                       </div>
+                      <input type="number" id="buyingQuantity" name="buyingQuantity" min="0" placeholder="0" class="input-box">
                     </div>
 
                     <label class="input-label" for="target-price">Target price</label>
-                    <div id="input-container">
+                    <div class="input-container">
                         <div class="relative">
                           <span class="input-details">
                                 Rp
@@ -126,11 +128,128 @@ export default class extends AbstractView {
                   <p id="newPotGL" class="output-box">
                           ...
                   </p>
+                  <label for="targetPotGL" class="output-label">Target Pot. G/L</label>
+                  <p id="targetPotGL" class="output-box">
+                          ...
+                  </p>
               </div>
             </div>
           </fieldset>
         </div>
         <!-- CARD END HERE -->
         `;
+    }
+}
+
+// I think it is better to separate the calculator itself and the average price calc
+export class AveragePriceCalculator {
+    constructor() {
+        this.listenEvent();
+    }
+
+    listenEvent() {
+        console.log("listening the event");
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("calcAverageButton")) {
+                let input = this.getInputValues(e.target);
+                console.log("=========  input ===============");
+                console.log(input);
+
+                if (Object.values(input).includes(NaN))
+                    return alert("Please fill all required inputs");
+
+                let output = this.calcOutput(input);
+                console.log("=========  output ===============");
+                console.log(output);
+
+                this.printOutput(e.target, output);
+            }
+        });
+    }
+
+    getInputValues(clickedButton) {
+        // the intention of targetedInputs is to only grab input values that we interested in, but it may require if-else step in the for loop below
+        // let targetedInputs = ["currentAveragePrice", "newAveragePrice", "buyingPrice", "buyingQuantity"];
+        let parentDiv = clickedButton.parentElement;
+        let inputsHtmlCollection = parentDiv.getElementsByTagName("input");
+
+        let inputValues = {};
+        let inputValue, inputId;
+
+        // grab ticker value
+        inputValues["ticker"] = inputsHtmlCollection[0].value;
+
+        // loop start from index of 1 to grab float values
+        for (
+            let i = 1, inputsLength = inputsHtmlCollection.length;
+            i < inputsLength;
+            i++
+        ) {
+            inputId = inputsHtmlCollection[i].id;
+            inputValue = parseFloat(inputsHtmlCollection[i].value);
+
+            inputValues[inputId] = inputValue;
+        }
+        // console.log(inputValues);
+        return inputValues;
+    }
+
+    calcOutput(inputValues) {
+        // output = {outputId: outputValue}
+        let outputs = {
+            ticker: inputValues.ticker,
+            newAveragePrice: 0,
+            currentEquity: 0,
+            additionalEquity: 0,
+            totalEquity: 0,
+            currentPotGL: 0,
+            newPotGL: 0,
+            targetPotGL: 0
+        };
+
+        outputs.newAveragePrice =
+            (inputValues.currentAveragePrice *
+                inputValues.currentShareQuantity +
+                inputValues.buyingPrice * inputValues.buyingQuantity) /
+            (inputValues.currentShareQuantity + inputValues.buyingQuantity);
+        outputs.currentEquity =
+            inputValues.currentAveragePrice *
+            inputValues.currentShareQuantity *
+            100;
+        outputs.additionalEquity =
+            inputValues.buyingPrice * inputValues.buyingQuantity * 100;
+        outputs.totalEquity = outputs.currentEquity + outputs.additionalEquity;
+        outputs.currentPotGL =
+            ((inputValues.currentAveragePrice - inputValues.buyingPrice) /
+                inputValues.buyingPrice) *
+            100;
+        outputs.newPotGL =
+            ((outputs.newAveragePrice - inputValues.buyingPrice) /
+                inputValues.buyingPrice) *
+            100;
+        outputs.targetPotGL = (inputValues.targetPrice - outputs.newAveragePrice) / outputs.newAveragePrice * 100;
+
+        return outputs;
+    }
+
+    // to be reconsidered to moved to "view"
+    printOutput(clickedButton, obj) {
+        let secondColumnDiv = clickedButton.parentElement.nextElementSibling;
+        let outputBoxes = secondColumnDiv.getElementsByClassName("output-box");
+        
+        for (
+            let i = 0, outputLength = outputBoxes.length, outputId, outputValue;
+            i < outputLength;
+            i++
+        ) {
+          outputId = outputBoxes[i].id;
+          outputValue = obj[outputId];
+          if (["newAveragePrice", "currentEquity", "additionalEquity", "totalEquity"].includes(outputId)) {
+            outputBoxes[i].innerHTML = `Rp ${new Intl.NumberFormat().format(outputValue.toFixed(2))}`;
+          } 
+          else if (["currentPotGL", "newPotGL", "targetPotGL"].includes(outputId)) {
+            outputBoxes[i].innerHTML = `${outputValue.toFixed(2)}%`;
+          }
+        }
     }
 }
