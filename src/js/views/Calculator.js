@@ -36,12 +36,10 @@ export default class CalculatorsView extends AbstractView {
             <div id="flex-container">
             <!-- start of 1st column -->
               <div id="first-column" class=" card__column">
-                  <label class="input-label" for="ticker">Ticker</label>
-                  <div class="input-container">
-                  <input list="ticker" name="ticker" id="tickerInput" class="input-box" maxlength="4"  pattern="[A-Z]" autofocus>
-                  <datalist id="ticker" >
+                  <label class="input-label" for="ticker">Ticker</label>                  
+                  <input list="ticker" name="ticker" id="ticker" class="input-box" maxlength="4"  pattern="[A-Z]" autofocus>
+                  <datalist id="ticker-datalist" >
                   </datalist>
-                  </div>
 
                   <label class="input-label" for="current-average-price">Current average price</label> 
                   <div class="input-container">
@@ -54,45 +52,17 @@ export default class CalculatorsView extends AbstractView {
                   </div>
 
                   <label class="input-label" for="current-share-quantity">Current share quantity</label>
-                    <div class="input-container">
-                        <div class="relative">
-                            <span class="input-details">
-                                Lot
-                            </span>
-                        </div>
-                        <input type="number" id="currentShareQuantity" name="currentShareQuantity" min="0" placeholder="0" class="input-box">
-                      </div>
+                <input type="number" id="currentShareQuantity" name="currentShareQuantity" min="0" placeholder="0" class="input-box">
 
                     <label class="input-label" for="buying-price">Additional buy price</label>
-                    <div class="input-container">
-                        <div class="relative">
-                            <span class="input-details">
-                                Rp/lot
-                            </span>
-                        </div>
-                        <input type="number" id="buyingPrice" name="buyingPrice" min="50" placeholder="0" step="1"
-                        class="input-box">
-                    </div>
+                    <input type="number" id="buyingPrice" name="buyingPrice" min="50" placeholder="0" step="1"
+                    class="input-box">
 
                     <label class="input-label" for="buying-quantity">Buying quantity</label>
-                    <div class="input-container">
-                      <div class="relative">
-                        <span class="input-details">
-                            Lot
-                        </span>
-                      </div>
-                      <input type="number" id="buyingQuantity" name="buyingQuantity" min="0" placeholder="0" class="input-box">
-                    </div>
+                    <input type="number" id="buyingQuantity" name="buyingQuantity" min="0" placeholder="0" class="input-box">
 
                     <label class="input-label" for="target-price">Target price</label>
-                    <div class="input-container">
-                        <div class="relative">
-                          <span class="input-details">
-                                Rp
-                            </span>
-                        </div>
-                        <input type="number" id="targetPrice" name="targetPrice" min="0" placeholder="0" class="input-box">
-                      </div>
+                    <input type="number" id="targetPrice" name="targetPrice" min="0" placeholder="0" class="input-box">
           
                 <button id="calcAverageButton" 
                   class="calcAverageButton" >Calculate</button>  

@@ -11,7 +11,8 @@ export default class extends AbstractView {
         <h1>Welcome</h1>
         <p> 
             Hai, website ini dibuat untuk keperluan pribadi saya yang aktif berinvestasi di pasar saham. <br>
-            Mungkin dapat bermanfaat bagi teman-teman investor lainnya. Saat ini fitur yang tersedia adalah kalkulator averaging.
+            <br>
+            Semoga dapat bermanfaat bagi teman-teman investor lainnya. Saat ini fitur yang tersedia adalah kalkulator averaging.
 
             <br>
             <br>

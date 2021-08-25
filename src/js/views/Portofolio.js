@@ -9,14 +9,14 @@ export default class extends AbstractView {
     async getHtml() {
         // this.getPortofolio();
         return `
-        <h1>IdStockTools - Portofolio</h1>
+        <h1>Portofolio</h1>
         <p> 
             Fitur ini masih dalam pengembangan.
             <br>
             <br>
         </p>
         <p>
-            <a class="link-to-page" href="/calculators" data-link>View calculators</a> 
+            <a class="link-to-page" href="/calculators" data-link>Lihat calculators</a> 
         </p> 
         `
     }
