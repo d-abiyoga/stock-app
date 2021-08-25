@@ -2,11 +2,15 @@ import Home from "./views/Home.js";
 import Calculator from "./views/Calculator.js";
 import Portofolio from "./views/Portofolio.js";
 
+// GLOBAL VARIABLE
+let passedFunction;
+
 const navigateTo = url => {
     history.pushState(null, null, url);
     router();
 }
 
+// 
 const router = async () => {
     const routes = [
         { path: "/" , view: Home },
@@ -34,6 +38,10 @@ const router = async () => {
 
     const view = new match.route.view();
     document.querySelector("#app").innerHTML = await view.getHtml();
+
+    // TESTING
+    // console.log(view);
+    passedFunction = view.passedFunction;
 };
 
 // to check if "back/forward button" triggered and call the router function
@@ -49,9 +57,20 @@ document.addEventListener("DOMContentLoaded", () => {
             // if the one that is clicked is children data-link, assign data-link element as the targetedElement 
             if (e.target.parentElement.matches("[data-link]")) {
                 targetedElement = e.target.parentElement; 
-        }
+            }
             navigateTo(targetedElement.href);
         }
+
+        // console.log("clicked")
+        
+        if (targetedElement.id == "calcAverageButton") { 
+            console.log(passedFunction)
+            passedFunction.onButtonClick(targetedElement)
+        }
+
+
+
+        
     })
     router();
 });

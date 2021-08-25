@@ -6,15 +6,13 @@ export default class CalculatorsView extends AbstractView {
         super();
         this.setTitle("IdStockTools - Calculator");
 
-        // Is there any other way to accomplish this?
-        this.AveragePrice = new AveragePriceCalculator();
+        this.passedFunction = new AveragePriceCalculator();
     }
 
     async getHtml() {
         // creating instance of add component button
         let addCompButton = new AddComponentButton();
 
-        this.AveragePrice.listenEvent();
         // return the html which construct the calculator page
         return `
         ${await this.getHeading()}
@@ -145,20 +143,15 @@ export default class CalculatorsView extends AbstractView {
 // I think it is better to separate the calculator itself and the average price calc
 export class AveragePriceCalculator {
     constructor() {
-
     }
 
-    listenEvent() {
-        // console.log("listening the event");
-        document.addEventListener("click", (e) => {
-            if (e.target.classList.contains("calcAverageButton")) {
-                let input = this.getInputValues(e.target);
-                if (Object.values(input).includes(NaN))
-                    return alert("Please fill all required inputs");
-                let output = this.calcOutput(input);
-                this.printOutput(e.target, output);
-            }
-        });
+    onButtonClick(clickedButton) {
+        if (clickedButton.classList.contains("calcAverageButton")) {
+            let input = this.getInputValues(clickedButton);
+            if (Object.values(input).includes(NaN)) { return alert("Please fill all required inputs"); }
+            let output = this.calcOutput(input);
+            this.printOutput(clickedButton, output);
+        }
     }
 
     getInputValues(clickedButton) {
@@ -184,7 +177,6 @@ export class AveragePriceCalculator {
 
             inputValues[inputId] = inputValue;
         }
-        // console.log(inputValues);
         return inputValues;
     }
 
@@ -214,12 +206,12 @@ export class AveragePriceCalculator {
             inputValues.buyingPrice * inputValues.buyingQuantity * 100;
         outputs.totalEquity = outputs.currentEquity + outputs.additionalEquity;
         outputs.currentPotGL =
-            ((inputValues.currentAveragePrice - inputValues.buyingPrice) /
-                inputValues.buyingPrice) *
+            ((inputValues.buyingPrice - inputValues.currentAveragePrice) /
+            inputValues.currentAveragePrice) *
             100;
         outputs.newPotGL =
-            ((outputs.newAveragePrice - inputValues.buyingPrice) /
-                inputValues.buyingPrice) *
+            ((inputValues.buyingPrice - outputs.newAveragePrice) /
+            outputs.newAveragePrice) *
             100;
         outputs.targetPotGL = (inputValues.targetPrice - outputs.newAveragePrice) / outputs.newAveragePrice * 100;
 
