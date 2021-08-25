@@ -93,13 +93,13 @@ nav {
   }
   
   .icon-home {
-    mask: url(../img/home_white_36dp.svg);
+    mask: url(../../img/home_white_36dp.svg);
   }
   .icon-calculators {
-    mask: url(../img/calculate_white_36dp.svg);
+    mask: url(../../img/calculate_white_36dp.svg);
   }
   .icon-portofolio {
-    mask: url(../img/pie_chart_white_36dp.svg);
+    mask: url(../../img/pie_chart_white_36dp.svg);
   }
   
   nav a * {
