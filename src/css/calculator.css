@@ -91,7 +91,7 @@
 } 
 
 .calcAverageButton {
-    @apply shadow-md text-green-50 p-1  w-40 rounded-xl bg-green-500 hover:bg-green-300 focus:ring-2 focus:ring-green-600;
+    @apply shadow-md text-green-50 p-1  w-40 rounded-xl bg-green-600 hover:bg-green-300 focus:ring-2 focus:ring-green-600;
     display: block;
     margin-left: 11rem;
     margin-top: 1rem;
@@ -99,7 +99,7 @@
 }
 
 .calcAverageButton:active {
-    @apply bg-green-600;
+    @apply bg-green-700;
 }
 
 

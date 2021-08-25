@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
 
 nav {
-    height: 100vh;
+    @apply bg-green-700;
+    height: 100%;
     width: 10rem;
     position: fixed;
     z-index: 1;
@@ -23,12 +24,10 @@ nav {
       font-size: 1.4rem;
   }
   
-  .menu-btn {
+  /* .menu-btn {
     position: relative;
-    /* display: flex; */
     width: 32px;
     height: 32px;
-    /* border: #2c3e50 1px solid; */
   
     justify-content: center;
     align-items: center;
@@ -38,8 +37,8 @@ nav {
     cursor: pointer;
 
     display: none;
-  }
-  
+  } */
+/*   
   #hamburger-menu {
     display: block;
     background-color: white;
@@ -66,10 +65,11 @@ nav {
   #hamburger-menu::after {
     transform: translateY(12px);
   }
-  
-  .nav-open {
+   */
+
+  /* .nav-open {
     width: 100vw;
-  }
+  } */
   
   nav a {
     display: flex;
@@ -113,7 +113,7 @@ nav {
 
 
   /* For Tablet Screen */
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1200px)  {
     nav {
         width: 4.25rem;
     }
@@ -146,7 +146,7 @@ nav {
       width: 32px;
       height: 32px;
     }
-
+/* 
     .menu-btn {
       width: 32px;
       height: 32px;
@@ -170,5 +170,5 @@ nav {
     }
     #hamburger-menu::after {
       transform: translateY(10px);
-    }
+    } */
 }
